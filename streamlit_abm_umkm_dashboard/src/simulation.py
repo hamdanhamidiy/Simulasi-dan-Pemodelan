@@ -85,6 +85,7 @@ def run_single_simulation(df: pd.DataFrame, scenario: dict, n_months: int = 24, 
             "monthly_profit": 0.0,
             "cumulative_profit": 0.0,
             "stressor": 0.0,
+            "active_agents": 0,
         })
         agents["approved"] = approved
         agents["defaulted"] = False
@@ -141,6 +142,7 @@ def run_single_simulation(df: pd.DataFrame, scenario: dict, n_months: int = 24, 
             "monthly_profit": float(monthly_profit),
             "cumulative_profit": float(cumulative_profit),
             "stressor": stressor,
+            "active_agents": int(active.sum()),
         })
 
     agents["approved"] = approved
@@ -197,6 +199,29 @@ def run_monte_carlo(df: pd.DataFrame, scenario_name: str, n_runs: int = 1000, n_
             "total_default": int(last["cumulative_defaults"]),
         })
     return pd.DataFrame(rows)
+
+
+def compute_convergence(mc_df: pd.DataFrame) -> pd.DataFrame:
+    """Menghitung rata-rata kumulatif default rate seiring bertambahnya iterasi MC.
+
+    Berguna untuk menunjukkan bahwa hasil Monte Carlo konvergen.
+    """
+    cumulative_mean = mc_df["default_rate_akhir"].expanding().mean()
+    cumulative_std = mc_df["default_rate_akhir"].expanding().std().fillna(0)
+    return pd.DataFrame({
+        "iterasi": mc_df["run"],
+        "cumulative_mean": cumulative_mean,
+        "cumulative_std": cumulative_std,
+        "upper_band": cumulative_mean + cumulative_std,
+        "lower_band": (cumulative_mean - cumulative_std).clip(lower=0),
+    })
+
+
+def agent_status_over_time(monthly_df: pd.DataFrame) -> pd.DataFrame:
+    """Menghitung jumlah agen aktif vs default per bulan untuk stacked area chart."""
+    result = monthly_df[["bulan", "approved_agents", "cumulative_defaults", "active_agents"]].copy()
+    result["defaulted_agents"] = result["cumulative_defaults"]
+    return result
 
 
 def sensitivity_intervention(df: pd.DataFrame, base_scenario_name: str = "Intervensi KUR", values=None,
