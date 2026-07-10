@@ -2,484 +2,368 @@ import streamlit as st
 
 
 def inject_custom_css() -> None:
-    """CSS modern premium — glassmorphism, animated gradients, smooth transitions."""
+    """Clean, professional CSS — inspired by Vercel/Linear design language."""
     st.markdown(
         """
         <style>
-        /* ── Google Font ─────────────────────────────────── */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        * { font-family: 'Inter', sans-serif !important; }
+        * { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important; }
 
-        /* ── Fade-in animation ───────────────────────────── */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes gradientShift {
-            0%   { background-position: 0% 50%; }
-            50%  { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50%      { opacity: 0.7; }
-        }
-        @keyframes shimmer {
-            0%   { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* ── Main canvas ─────────────────────────────────── */
-        .main {
-            background: linear-gradient(165deg, #0F1117 0%, #13141F 40%, #161825 100%);
-        }
+        /* ── Canvas ──────────────────────────────────────── */
+        .main { background: #0A0A0B; }
         .block-container {
-            padding-top: 1.2rem;
+            padding-top: 1.5rem;
             padding-bottom: 2rem;
-            max-width: 1320px;
-            animation: fadeInUp 0.5s ease-out;
+            max-width: 1280px;
         }
 
         /* ── Sidebar ─────────────────────────────────────── */
         [data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #0D0F1A 0%, #141729 50%, #1A1E35 100%);
-            border-right: 1px solid rgba(99, 102, 241, 0.15);
+            background: #111113;
+            border-right: 1px solid #1F1F23;
         }
-        [data-testid="stSidebar"] * {
-            color: #CBD5E1 !important;
-        }
+        [data-testid="stSidebar"] * { color: #A1A1AA !important; }
         [data-testid="stSidebar"] .stMarkdown h1 {
-            color: #E2E8F0 !important;
-            font-weight: 800 !important;
-            letter-spacing: -0.02em;
+            color: #FAFAFA !important;
+            font-weight: 600 !important;
+            font-size: 18px !important;
         }
         [data-testid="stSidebar"] [data-testid="stExpander"] {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(99, 102, 241, 0.12);
-            border-radius: 16px;
-            margin-bottom: 8px;
+            background: transparent;
+            border: 1px solid #1F1F23;
+            border-radius: 10px;
+            margin-bottom: 6px;
         }
         [data-testid="stSidebar"] .stButton > button {
-            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A78BFA 100%);
-            background-size: 200% 200%;
-            animation: gradientShift 3s ease infinite;
-            color: white !important;
+            background: #FAFAFA;
+            color: #0A0A0B !important;
             border: none;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 15px;
-            padding: 12px 20px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 18px rgba(99, 102, 241, 0.35);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 16px;
+            transition: opacity 0.2s ease;
         }
         [data-testid="stSidebar"] .stButton > button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(99, 102, 241, 0.5);
+            opacity: 0.85;
         }
 
-        /* ── Metric Cards — Glassmorphism ────────────────── */
+        /* ── Metric Cards ────────────────────────────────── */
         div[data-testid="stMetric"] {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(99, 102, 241, 0.12);
-            padding: 20px 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeInUp 0.6s ease-out;
+            background: #111113;
+            border: 1px solid #1F1F23;
+            padding: 18px 18px;
+            border-radius: 12px;
+            transition: border-color 0.2s ease;
         }
         div[data-testid="stMetric"]:hover {
-            border-color: rgba(99, 102, 241, 0.35);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.12);
-            transform: translateY(-3px);
+            border-color: #27272A;
         }
         div[data-testid="stMetric"] label {
-            color: #94A3B8 !important;
+            color: #71717A !important;
             font-size: 12px !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
         }
         div[data-testid="stMetric"] [data-testid="stMetricValue"] {
-            color: #F1F5F9 !important;
-            font-weight: 800 !important;
-            font-size: 22px !important;
-        }
-        div[data-testid="stMetric"] [data-testid="stMetricDelta"] {
+            color: #FAFAFA !important;
             font-weight: 600 !important;
+            font-size: 20px !important;
         }
 
-        /* ── Hero Card ───────────────────────────────────── */
+        /* ── Hero ────────────────────────────────────────── */
         .hero-card {
-            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 25%, #8B5CF6 50%, #A78BFA 75%, #6366F1 100%);
-            background-size: 300% 300%;
-            animation: gradientShift 6s ease infinite;
-            padding: 36px 38px;
-            border-radius: 28px;
-            color: white;
-            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        .hero-card::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%);
-            border-radius: 50%;
+            background: #111113;
+            border: 1px solid #1F1F23;
+            padding: 32px 32px;
+            border-radius: 16px;
+            margin-bottom: 20px;
         }
         .hero-title {
-            font-size: 32px;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 10px;
-            letter-spacing: -0.03em;
-            position: relative;
-            z-index: 1;
+            font-size: 26px;
+            font-weight: 700;
+            color: #FAFAFA;
+            line-height: 1.2;
+            margin-bottom: 8px;
         }
         .hero-subtitle {
-            font-size: 15px;
-            opacity: 0.92;
-            max-width: 820px;
-            line-height: 1.55;
-            position: relative;
-            z-index: 1;
+            font-size: 14px;
+            color: #71717A;
+            max-width: 720px;
+            line-height: 1.6;
         }
         .hero-badge {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 5px 14px;
-            border-radius: 999px;
+            background: #18181B;
+            border: 1px solid #27272A;
+            padding: 4px 12px;
+            border-radius: 6px;
             font-size: 12px;
-            font-weight: 600;
-            margin-top: 12px;
-            position: relative;
-            z-index: 1;
+            font-weight: 500;
+            color: #A1A1AA;
+            margin-top: 14px;
         }
 
-        /* ── Glass Card ──────────────────────────────────── */
+        /* ── Cards ───────────────────────────────────────── */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            padding: 22px 24px;
-            border-radius: 22px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-            margin-bottom: 16px;
-            transition: all 0.35s ease;
-            animation: fadeInUp 0.6s ease-out;
-        }
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.25);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.08);
+            background: #111113;
+            border: 1px solid #1F1F23;
+            padding: 20px 22px;
+            border-radius: 12px;
+            margin-bottom: 14px;
         }
 
-        /* ── Info Card (with colored left border) ────────── */
         .info-card {
-            background: rgba(99, 102, 241, 0.06);
-            border-left: 4px solid #6366F1;
-            padding: 18px 22px;
-            border-radius: 0 16px 16px 0;
+            background: #111113;
+            border: 1px solid #1F1F23;
+            border-left: 3px solid #3B82F6;
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
             margin: 12px 0;
-            animation: fadeInUp 0.5s ease-out;
         }
         .info-card-success {
-            background: rgba(34, 197, 94, 0.06);
-            border-left: 4px solid #22C55E;
-            padding: 18px 22px;
-            border-radius: 0 16px 16px 0;
+            background: #111113;
+            border: 1px solid #1F1F23;
+            border-left: 3px solid #22C55E;
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
             margin: 12px 0;
         }
         .info-card-warning {
-            background: rgba(245, 158, 11, 0.06);
-            border-left: 4px solid #F59E0B;
-            padding: 18px 22px;
-            border-radius: 0 16px 16px 0;
+            background: #111113;
+            border: 1px solid #1F1F23;
+            border-left: 3px solid #EAB308;
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
             margin: 12px 0;
         }
         .info-card-danger {
-            background: rgba(239, 68, 68, 0.06);
-            border-left: 4px solid #EF4444;
-            padding: 18px 22px;
-            border-radius: 0 16px 16px 0;
+            background: #111113;
+            border: 1px solid #1F1F23;
+            border-left: 3px solid #EF4444;
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
             margin: 12px 0;
         }
 
-        /* ── Section Titles ──────────────────────────────── */
+        /* ── Section headings ────────────────────────────── */
         .section-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: #F1F5F9;
-            margin: 8px 0 6px 0;
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #FAFAFA;
+            margin: 6px 0 4px 0;
         }
         .section-desc {
-            color: #94A3B8;
+            color: #71717A;
             font-size: 14px;
             line-height: 1.6;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
-        /* ── Scenario Pill ───────────────────────────────── */
+        /* ── Pills & muted text ──────────────────────────── */
         .scenario-pill {
             display: inline-block;
-            padding: 7px 16px;
-            margin: 4px 6px 4px 0;
-            border-radius: 999px;
-            background: rgba(99, 102, 241, 0.12);
-            color: #A5B4FC !important;
-            border: 1px solid rgba(99, 102, 241, 0.25);
+            padding: 5px 12px;
+            margin: 3px 4px 3px 0;
+            border-radius: 6px;
+            background: #18181B;
+            color: #D4D4D8 !important;
+            border: 1px solid #27272A;
             font-size: 13px;
-            font-weight: 700;
-            transition: all 0.25s ease;
-        }
-        .scenario-pill:hover {
-            background: rgba(99, 102, 241, 0.22);
-            transform: scale(1.03);
+            font-weight: 600;
         }
         .small-muted {
-            color: #64748B;
-            font-size: 14px;
+            color: #52525B;
+            font-size: 13px;
         }
 
         /* ── Footer ──────────────────────────────────────── */
         .footer-note {
-            color: #475569;
-            font-size: 13px;
+            color: #3F3F46;
+            font-size: 12px;
             text-align: center;
-            padding: 28px 0 8px 0;
-            border-top: 1px solid rgba(99, 102, 241, 0.08);
-            margin-top: 30px;
+            padding: 24px 0 6px 0;
+            border-top: 1px solid #1F1F23;
+            margin-top: 28px;
         }
 
         /* ── Tabs ────────────────────────────────────────── */
         .stTabs [data-baseweb="tab-list"] {
-            gap: 4px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 16px;
-            padding: 4px;
-            border: 1px solid rgba(99, 102, 241, 0.08);
+            gap: 2px;
+            background: transparent;
+            border-bottom: 1px solid #1F1F23;
         }
         .stTabs [data-baseweb="tab"] {
             background-color: transparent;
-            border-radius: 12px;
+            border-radius: 6px 6px 0 0;
             border: none;
-            padding: 10px 20px;
-            color: #94A3B8 !important;
-            font-weight: 600;
-            transition: all 0.25s ease;
+            padding: 10px 18px;
+            color: #71717A !important;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.15s ease;
         }
         .stTabs [data-baseweb="tab"]:hover {
-            background-color: rgba(99, 102, 241, 0.08);
-            color: #C7D2FE !important;
+            color: #D4D4D8 !important;
         }
         .stTabs [aria-selected="true"] {
-            background-color: rgba(99, 102, 241, 0.15) !important;
-            color: #A5B4FC !important;
+            color: #FAFAFA !important;
         }
         .stTabs [data-baseweb="tab-highlight"] {
-            background-color: #6366F1 !important;
-            border-radius: 12px;
+            background-color: #FAFAFA !important;
+            height: 2px;
         }
 
-        /* ── Dataframe ───────────────────────────────────── */
+        /* ── Tables ──────────────────────────────────────── */
         [data-testid="stDataFrame"] {
-            border-radius: 16px;
+            border-radius: 10px;
             overflow: hidden;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid #1F1F23;
         }
 
-        /* ── Expander ────────────────────────────────────── */
+        /* ── Expanders ───────────────────────────────────── */
         .streamlit-expanderHeader {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-radius: 14px !important;
-            border: 1px solid rgba(99, 102, 241, 0.1) !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
+            font-size: 14px !important;
         }
 
         /* ── Download button ─────────────────────────────── */
         .stDownloadButton > button {
-            background: rgba(99, 102, 241, 0.12) !important;
-            border: 1px solid rgba(99, 102, 241, 0.25) !important;
-            color: #A5B4FC !important;
-            border-radius: 12px !important;
-            font-weight: 600 !important;
-            transition: all 0.3s ease !important;
+            background: #18181B !important;
+            border: 1px solid #27272A !important;
+            color: #D4D4D8 !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+            transition: border-color 0.2s ease !important;
         }
         .stDownloadButton > button:hover {
-            background: rgba(99, 102, 241, 0.22) !important;
-            transform: translateY(-1px) !important;
+            border-color: #3F3F46 !important;
         }
 
-        /* ── Flowchart cards ─────────────────────────────── */
+        /* ── Flow steps ──────────────────────────────────── */
         .flow-step {
-            background: rgba(99, 102, 241, 0.06);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            border-radius: 16px;
-            padding: 16px 18px;
+            background: #111113;
+            border: 1px solid #1F1F23;
+            border-radius: 10px;
+            padding: 14px 14px;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-        .flow-step:hover {
-            border-color: rgba(99, 102, 241, 0.35);
-            transform: translateY(-2px);
         }
         .flow-step-num {
-            font-size: 28px;
-            font-weight: 900;
-            color: #6366F1;
-            margin-bottom: 4px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #3B82F6;
+            margin-bottom: 2px;
         }
         .flow-step-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #E2E8F0;
-            margin-bottom: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #FAFAFA;
+            margin-bottom: 3px;
         }
         .flow-step-desc {
-            font-size: 12px;
-            color: #94A3B8;
+            font-size: 11px;
+            color: #71717A;
             line-height: 1.4;
         }
         .flow-arrow {
             text-align: center;
-            font-size: 24px;
-            color: #6366F1;
-            padding-top: 22px;
+            font-size: 18px;
+            color: #3F3F46;
+            padding-top: 20px;
         }
 
-        /* ── Glossary cards ──────────────────────────────── */
+        /* ── Glossary ────────────────────────────────────── */
         .glossary-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            border-radius: 14px;
-            padding: 14px 18px;
-            margin-bottom: 8px;
-            transition: all 0.25s ease;
+            background: transparent;
+            border-bottom: 1px solid #1F1F23;
+            padding: 10px 0;
         }
-        .glossary-item:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-        }
+        .glossary-item:last-child { border-bottom: none; }
         .glossary-term {
-            font-weight: 700;
-            color: #A5B4FC;
-            font-size: 14px;
+            font-weight: 600;
+            color: #FAFAFA;
+            font-size: 13px;
         }
         .glossary-def {
-            color: #94A3B8;
+            color: #71717A;
             font-size: 13px;
-            margin-top: 4px;
+            margin-top: 2px;
             line-height: 1.5;
         }
 
-        /* ── Compliance row ──────────────────────────────── */
+        /* ── Compliance rows ─────────────────────────────── */
         .compliance-row {
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(99, 102, 241, 0.08);
-            border-radius: 12px;
-            padding: 12px 16px;
-            margin-bottom: 6px;
-            transition: all 0.2s ease;
+            gap: 10px;
+            border-bottom: 1px solid #1F1F23;
+            padding: 10px 0;
         }
-        .compliance-row:hover {
-            background: rgba(99, 102, 241, 0.05);
-        }
-        .compliance-icon {
-            font-size: 20px;
-            min-width: 28px;
-        }
+        .compliance-row:last-child { border-bottom: none; }
+        .compliance-icon { font-size: 16px; min-width: 24px; }
         .compliance-label {
             font-weight: 600;
-            color: #E2E8F0;
-            font-size: 14px;
+            color: #FAFAFA;
+            font-size: 13px;
+            min-width: 140px;
         }
         .compliance-value {
-            color: #94A3B8;
+            color: #71717A;
             font-size: 13px;
         }
 
         /* ── Divider ─────────────────────────────────────── */
-        .gradient-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+        .section-divider {
+            height: 1px;
+            background: #1F1F23;
             border: none;
-            margin: 20px 0;
+            margin: 22px 0;
         }
 
         /* ── Scrollbar ───────────────────────────────────── */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(99, 102, 241, 0.3);
-            border-radius: 999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(99, 102, 241, 0.5);
-        }
+        ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3F3F46; }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
 
-# ── Plotly template for dark themed charts ────────────────────────────────── #
+# ── Plotly layout ─────────────────────────────────────────────────────────── #
 PLOTLY_LAYOUT = dict(
     template="plotly_dark",
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
-    font=dict(family="Inter, sans-serif", color="#CBD5E1"),
-    title_font=dict(size=17, color="#F1F5F9"),
+    font=dict(family="Inter, -apple-system, sans-serif", color="#A1A1AA", size=12),
+    title_font=dict(size=15, color="#FAFAFA"),
     legend=dict(
         bgcolor="rgba(0,0,0,0)",
-        bordercolor="rgba(99,102,241,0.12)",
+        bordercolor="#1F1F23",
         borderwidth=1,
-        font=dict(size=12),
+        font=dict(size=11),
     ),
-    xaxis=dict(gridcolor="rgba(148,163,184,0.08)", zerolinecolor="rgba(148,163,184,0.08)"),
-    yaxis=dict(gridcolor="rgba(148,163,184,0.08)", zerolinecolor="rgba(148,163,184,0.08)"),
-    margin=dict(t=50, b=40, l=50, r=20),
+    xaxis=dict(gridcolor="#1F1F23", zerolinecolor="#1F1F23"),
+    yaxis=dict(gridcolor="#1F1F23", zerolinecolor="#1F1F23"),
+    margin=dict(t=48, b=36, l=48, r=16),
     hoverlabel=dict(
-        bgcolor="#1E1E2E",
-        bordercolor="rgba(99,102,241,0.3)",
-        font_size=13,
-        font_color="#E2E8F0",
+        bgcolor="#18181B",
+        bordercolor="#27272A",
+        font_size=12,
+        font_color="#FAFAFA",
     ),
 )
 
-# Curated color palette for chart traces
 CHART_COLORS = [
-    "#6366F1",  # Indigo
-    "#22C55E",  # Green
+    "#3B82F6",  # Blue
+    "#10B981",  # Emerald
     "#F59E0B",  # Amber
     "#EF4444",  # Red
-    "#06B6D4",  # Cyan
-    "#EC4899",  # Pink
     "#8B5CF6",  # Violet
-    "#14B8A6",  # Teal
+    "#EC4899",  # Pink
+    "#06B6D4",  # Cyan
+    "#84CC16",  # Lime
 ]
