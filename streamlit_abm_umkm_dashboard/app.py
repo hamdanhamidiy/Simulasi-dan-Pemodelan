@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import streamlit as st
 
 from src.data_generator import load_or_create_dataset, make_umkm_dataset
